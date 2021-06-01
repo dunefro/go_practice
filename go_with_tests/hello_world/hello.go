@@ -7,7 +7,7 @@ const englishHello = "Hello "
 const hindiHello = "Namaste "
 const spanishHello = "Hola "
 
-func hello(name string, language string) string {
+func Hello(name string, language string) string {
 	// Condition for empty string
 	if name == "" {
 		name = "World"
@@ -26,7 +26,7 @@ func hello(name string, language string) string {
 }
 
 func main() {
-	fmt.Println(hello("", "hindi"))
-	fmt.Println(hello("Vedant", ""))
+	fmt.Println(Hello("", "hindi"))
+	fmt.Println(Hello("Vedant", ""))
 
 }
