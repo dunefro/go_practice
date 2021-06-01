@@ -12,16 +12,21 @@ func hello(name string, language string) string {
 	if name == "" {
 		name = "World"
 	}
-	if language == "hindi" {
-		return hindiHello + name + " !!"
-	}
-	if language == "spanish" {
-		return spanishHello + name + " !!"
+	var prefix string
+	switch language {
+	case "hindi":
+		prefix = hindiHello
+	case "spanish":
+		prefix = spanishHello
+	default:
+		prefix = englishHello
 	}
 
-	return englishHello + name + " !!"
+	return prefix + name + " !!"
 }
 
 func main() {
-	fmt.Println(hello("Vedant", "hindi"))
+	fmt.Println(hello("", "hindi"))
+	fmt.Println(hello("Vedant", ""))
+
 }
