@@ -12,7 +12,12 @@ func Hello(name string, language string) string {
 	if name == "" {
 		name = "World"
 	}
-	var prefix string
+	return greetingPrefix(language) + name + " !!"
+}
+
+// (prefix string) -> creates a string variable prefix and automatically return it at the end by simple return statement
+func greetingPrefix(language string) (prefix string) {
+
 	switch language {
 	case "hindi":
 		prefix = hindiHello
@@ -21,8 +26,7 @@ func Hello(name string, language string) string {
 	default:
 		prefix = englishHello
 	}
-
-	return prefix + name + " !!"
+	return
 }
 
 func main() {
