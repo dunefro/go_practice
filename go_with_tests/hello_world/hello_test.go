@@ -12,8 +12,8 @@ package main
 import "testing"
 
 func TestHello(t *testing.T) {
-	got := hello()
-	want := "Hello World !!"
+	got := hello("Vedant")
+	want := "Hello Vedant !!"
 
 	if got != want {
 		// %q is used to print the string with quotes
