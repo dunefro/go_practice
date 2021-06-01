@@ -6,6 +6,7 @@ import "fmt"
 const englishHello = "Hello "
 
 func hello(name string) string {
+	// Condition for empty string
 	if name == "" {
 		name = "World"
 	}

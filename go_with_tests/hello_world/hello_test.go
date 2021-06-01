@@ -13,18 +13,27 @@ import "testing"
 
 func TestHello(t *testing.T) {
 
-	t.Run("saying hello to people", func(t *testing.T) {
-		got := hello("Vedant")
-		want := "Hello Vedant !!"
+	// function to remove the duplicate codes
+	checkgotandwant := func(t testing.TB, got string, want string) {
+		// Helper() function tells the compiler that if there is an error in the code and then its not coming from this function
+		// It helps developer understand that this function is not causing the actual problem
+		// this function is just a helper function
+		// If any error comes up and we use Helper() then the error will be shown coming from the place where checkgotandwant() function is called
+		// If Helper() function is not used then it will show the error coming from the function below
+		t.Helper()
 		if got != want {
 			t.Errorf("Expected output: %q Recieved output: %q\n", want, got)
 		}
+	}
+
+	t.Run("saying hello to people", func(t *testing.T) {
+		got := hello("Vedant")
+		want := "Hello Vedant !!"
+		checkgotandwant(t, got, want)
 	})
 	t.Run("saying hello to world if the string is empty", func(t *testing.T) {
 		got := hello("")
 		want := "Hello World !!"
-		if got != want {
-			t.Errorf("Expected output: %q Recieved output: %q\n", want, got)
-		}
+		checkgotandwant(t, got, want)
 	})
 }
