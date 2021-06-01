@@ -27,13 +27,19 @@ func TestHello(t *testing.T) {
 	}
 
 	t.Run("saying hello to people", func(t *testing.T) {
-		got := hello("Vedant")
+		got := hello("Vedant", "")
 		want := "Hello Vedant !!"
 		checkgotandwant(t, got, want)
 	})
 	t.Run("saying hello to world if the string is empty", func(t *testing.T) {
-		got := hello("")
+		got := hello("", "english")
 		want := "Hello World !!"
+		checkgotandwant(t, got, want)
+	})
+	// language for greeting
+	t.Run("In Hindi", func(t *testing.T) {
+		got := hello("Vedant", "hindi")
+		want := "Namaste Vedant !!"
 		checkgotandwant(t, got, want)
 	})
 }
