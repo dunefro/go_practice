@@ -12,11 +12,19 @@ package main
 import "testing"
 
 func TestHello(t *testing.T) {
-	got := hello("Vedant")
-	want := "Hello Vedant !!"
 
-	if got != want {
-		// %q is used to print the string with quotes
-		t.Errorf("Expected output: %q\nRecieved output: %q\n", want, got)
-	}
+	t.Run("saying hello to people", func(t *testing.T) {
+		got := hello("Vedant")
+		want := "Hello Vedant !!"
+		if got != want {
+			t.Errorf("Expected output: %q Recieved output: %q\n", want, got)
+		}
+	})
+	t.Run("saying hello to world if the string is empty", func(t *testing.T) {
+		got := hello("")
+		want := "Hello World !!"
+		if got != want {
+			t.Errorf("Expected output: %q Recieved output: %q\n", want, got)
+		}
+	})
 }
