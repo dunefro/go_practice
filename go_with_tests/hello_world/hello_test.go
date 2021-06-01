@@ -36,10 +36,17 @@ func TestHello(t *testing.T) {
 		want := "Hello World !!"
 		checkgotandwant(t, got, want)
 	})
-	// language for greeting
+	// language for greeting in hindi
 	t.Run("In Hindi", func(t *testing.T) {
 		got := hello("Vedant", "hindi")
 		want := "Namaste Vedant !!"
+		checkgotandwant(t, got, want)
+	})
+
+	// language for greeting in spanish
+	t.Run("In Spanish", func(t *testing.T) {
+		got := hello("Vedant", "spanish")
+		want := "Hola Vedant !!"
 		checkgotandwant(t, got, want)
 	})
 }
