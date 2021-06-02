@@ -8,3 +8,13 @@ func Sum(array []int) int {
 	}
 	return sum
 }
+
+// Function to write the sum of all slices
+func SumAll(slices ...[]int) (total int) {
+	for _, slice := range slices {
+		for _, n := range slice {
+			total += n
+		}
+	}
+	return
+}
