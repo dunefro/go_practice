@@ -1,5 +1,10 @@
 package array
 
-func Sum(array [5]int) int {
-	return 0
+// Sum function for non-fixed size of array
+func Sum(array []int) int {
+	sum := 0
+	for _, n := range array {
+		sum += n
+	}
+	return sum
 }
