@@ -1,8 +1,11 @@
 package iteration
 
-func Repeat(s string) string {
+func Repeat(s string, n int) string {
 	finalstr := ""
-	for i := 0; i < 5; i++ {
+	if n == 0 {
+		n = 5
+	}
+	for i := 0; i < n; i++ {
 		finalstr = finalstr + s
 	}
 	return finalstr
