@@ -25,22 +25,17 @@ func TestPermiter(t *testing.T) {
 			t.Errorf("Expected: %g Received: %g", got, want)
 		}
 	}
+	perimeterTests := []struct {
+		shape Shape
+		want  float64
+	}{
+		{Rectangle{10.0, 40.0}, 100.0},
+		{Circle{5.0}, 31.42},
+	}
 
-	t.Run("Testing the perimeter of rectangle", func(t *testing.T) {
-		r1 := Rectangle{
-			width:   10.0,
-			breadth: 40.0,
-		}
-		want := 100.0
-		checkPerimeter(t, r1, want)
-	})
-	t.Run("Testing the perimeter of circle", func(t *testing.T) {
-		c1 := Circle{
-			radius: 5.0,
-		}
-		want := 31.42
-		checkPerimeter(t, c1, want)
-	})
+	for i := 0; i < len(perimeterTests); i++ {
+		checkPerimeter(t, perimeterTests[i].shape, perimeterTests[i].want)
+	}
 }
 func TestArea(t *testing.T) {
 
@@ -51,21 +46,14 @@ func TestArea(t *testing.T) {
 			t.Errorf("Expected: %g Received: %g", got, want)
 		}
 	}
-
-	t.Run("Testing the area of rectangle", func(t *testing.T) {
-		r2 := Rectangle{
-			width:   5.0,
-			breadth: 2.0,
-		}
-
-		want := 10.0
-		checkArea(t, r2, want)
-	})
-	t.Run("Testing the Area of circle", func(t *testing.T) {
-		c2 := Circle{
-			radius: 10.0,
-		}
-		want := 314.16
-		checkArea(t, c2, want)
-	})
+	areaTests := []struct {
+		shape Shape
+		want  float64
+	}{
+		{Rectangle{5.0, 2.0}, 10.0},
+		{Circle{10.0}, 314.16},
+	}
+	for i := 0; i < len(areaTests); i++ {
+		checkArea(t, areaTests[i].shape, areaTests[i].want)
+	}
 }
