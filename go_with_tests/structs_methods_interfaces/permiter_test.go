@@ -2,6 +2,10 @@ package perimeter
 
 import "testing"
 
+type Shape interface {
+	Perimeter() float64
+}
+
 type Rectangle struct {
 	width   float64
 	breadth float64
@@ -13,7 +17,9 @@ type Circle struct {
 
 func TestPermiter(t *testing.T) {
 
-	checkgotandwant := func(t testing.TB, got float64, want float64) {
+	checkPerimeter := func(t testing.TB, shape Shape, want float64) {
+		t.Helper()
+		got := shape.Perimeter()
 		if got != want {
 			t.Errorf("Expected: %g Received: %g", got, want)
 		}
@@ -24,17 +30,15 @@ func TestPermiter(t *testing.T) {
 			width:   10.0,
 			breadth: 40.0,
 		}
-		got := r1.Perimeter()
 		want := 100.0
-		checkgotandwant(t, got, want)
+		checkPerimeter(t, r1, want)
 	})
 	t.Run("Testing the perimeter of circle", func(t *testing.T) {
 		c1 := Circle{
 			radius: 5.0,
 		}
-		got := c1.Perimeter()
 		want := 31.42
-		checkgotandwant(t, got, want)
+		checkPerimeter(t, c1, want)
 	})
 }
 func TestArea(t *testing.T) {
