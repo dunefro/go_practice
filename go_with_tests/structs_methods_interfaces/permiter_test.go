@@ -16,7 +16,7 @@ type Circle struct {
 	radius float64
 }
 
-func TestPermiter(t *testing.T) {
+func TestPerimeter(t *testing.T) {
 
 	checkPerimeter := func(t testing.TB, shape Shape, want float64) {
 		t.Helper()
@@ -26,15 +26,18 @@ func TestPermiter(t *testing.T) {
 		}
 	}
 	perimeterTests := []struct {
+		name  string
 		shape Shape
 		want  float64
 	}{
-		{Rectangle{10.0, 40.0}, 100.0},
-		{Circle{5.0}, 31.42},
+		{"Rectangle", Rectangle{10.0, 40.0}, 100.0},
+		{"Circle", Circle{5.0}, 31.42},
 	}
 
 	for i := 0; i < len(perimeterTests); i++ {
-		checkPerimeter(t, perimeterTests[i].shape, perimeterTests[i].want)
+		t.Run(perimeterTests[i].name, func(t *testing.T) {
+			checkPerimeter(t, perimeterTests[i].shape, perimeterTests[i].want)
+		})
 	}
 }
 func TestArea(t *testing.T) {
