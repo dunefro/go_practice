@@ -10,13 +10,13 @@ func (r Rectangle) Perimeter() float64 {
 	return roundoff(2 * (r.width + r.breadth))
 }
 
-func RectangleArea(rectangle Rectangle) float64 {
-	return roundoff(rectangle.width * rectangle.breadth)
+func (r Rectangle) Area() float64 {
+	return roundoff(r.width * r.breadth)
 }
 
 func (c Circle) Perimeter() float64 {
 	return roundoff(2 * math.Pi * c.radius)
 }
-func CircleArea(circle Circle) float64 {
-	return roundoff(math.Pi * circle.radius * circle.radius)
+func (c Circle) Area() float64 {
+	return roundoff(math.Pi * c.radius * c.radius)
 }

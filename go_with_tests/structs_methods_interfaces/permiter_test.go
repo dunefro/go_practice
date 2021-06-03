@@ -50,7 +50,7 @@ func TestArea(t *testing.T) {
 			width:   5.0,
 			breadth: 2.0,
 		}
-		got := RectangleArea(r2)
+		got := r2.Area()
 		want := 10.0
 		checkgotandwant(t, got, want)
 	})
@@ -58,7 +58,7 @@ func TestArea(t *testing.T) {
 		c2 := Circle{
 			radius: 10.0,
 		}
-		got := CircleArea(c2)
+		got := c2.Area()
 		want := 314.16
 		checkgotandwant(t, got, want)
 	})
