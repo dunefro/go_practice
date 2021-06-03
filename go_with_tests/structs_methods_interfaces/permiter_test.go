@@ -24,7 +24,7 @@ func TestPermiter(t *testing.T) {
 			width:   10.0,
 			breadth: 40.0,
 		}
-		got := RectanglePermiter(r1)
+		got := r1.Perimeter()
 		want := 100.0
 		checkgotandwant(t, got, want)
 	})
@@ -32,7 +32,7 @@ func TestPermiter(t *testing.T) {
 		c1 := Circle{
 			radius: 5.0,
 		}
-		got := CirclePerimeter(c1)
+		got := c1.Perimeter()
 		want := 31.42
 		checkgotandwant(t, got, want)
 	})

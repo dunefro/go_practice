@@ -6,16 +6,16 @@ func roundoff(f float64) float64 {
 	return math.Round(f*100) / 100
 }
 
-func RectanglePermiter(rectangle Rectangle) float64 {
-	return roundoff(2 * (rectangle.width + rectangle.breadth))
+func (r Rectangle) Perimeter() float64 {
+	return roundoff(2 * (r.width + r.breadth))
 }
 
 func RectangleArea(rectangle Rectangle) float64 {
 	return roundoff(rectangle.width * rectangle.breadth)
 }
 
-func CirclePerimeter(circle Circle) float64 {
-	return roundoff(2 * math.Pi * circle.radius)
+func (c Circle) Perimeter() float64 {
+	return roundoff(2 * math.Pi * c.radius)
 }
 func CircleArea(circle Circle) float64 {
 	return roundoff(math.Pi * circle.radius * circle.radius)
