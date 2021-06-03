@@ -4,6 +4,7 @@ import "testing"
 
 type Shape interface {
 	Perimeter() float64
+	Area() float64
 }
 
 type Rectangle struct {
@@ -43,9 +44,11 @@ func TestPermiter(t *testing.T) {
 }
 func TestArea(t *testing.T) {
 
-	checkgotandwant := func(t testing.TB, got float64, want float64) {
+	checkArea := func(t testing.TB, shape Shape, want float64) {
+		t.Helper()
+		got := shape.Area()
 		if got != want {
-			t.Errorf("Expected: %.2f Received: %.2f", got, want)
+			t.Errorf("Expected: %g Received: %g", got, want)
 		}
 	}
 
@@ -54,16 +57,15 @@ func TestArea(t *testing.T) {
 			width:   5.0,
 			breadth: 2.0,
 		}
-		got := r2.Area()
+
 		want := 10.0
-		checkgotandwant(t, got, want)
+		checkArea(t, r2, want)
 	})
 	t.Run("Testing the Area of circle", func(t *testing.T) {
 		c2 := Circle{
 			radius: 10.0,
 		}
-		got := c2.Area()
 		want := 314.16
-		checkgotandwant(t, got, want)
+		checkArea(t, c2, want)
 	})
 }
