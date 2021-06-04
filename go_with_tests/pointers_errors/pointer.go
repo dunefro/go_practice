@@ -1,9 +1,11 @@
 package bitcoin
 
-func (w *Wallet) Deposit(money int) {
+type Bitcoin int
+
+func (w *Wallet) Deposit(money Bitcoin) {
 	w.balance += money
 }
 
-func (w *Wallet) Balance() int {
+func (w *Wallet) Balance() Bitcoin {
 	return w.balance
 }

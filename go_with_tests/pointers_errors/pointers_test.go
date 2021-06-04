@@ -3,14 +3,14 @@ package bitcoin
 import "testing"
 
 type Wallet struct {
-	balance int
+	balance Bitcoin
 }
 
 func TestWallet(t *testing.T) {
 	wallet := Wallet{}
-	wallet.Deposit(10)
+	wallet.Deposit(Bitcoin(10))
 	got := wallet.Balance()
-	want := 10
+	want := Bitcoin(10)
 	if got != want {
 		t.Errorf("Expected: %d Recieved: %d", got, want)
 	}
