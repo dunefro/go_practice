@@ -24,10 +24,6 @@ func TestWallet(t *testing.T) {
 		// balance must be added
 		wallet := Wallet{balance: Bitcoin(20)}
 		wallet.Withdrawl(Bitcoin(10))
-		got := wallet.Balance()
-		want := Bitcoin(10)
-		if got != want {
-			t.Errorf("Expected: %s Recieved: %s", got, want)
-		}
+		assertBalance(t, wallet, Bitcoin(10))
 	})
 }
