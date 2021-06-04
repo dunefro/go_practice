@@ -8,6 +8,10 @@ func (w *Wallet) Deposit(money Bitcoin) {
 	w.balance += money
 }
 
+func (w *Wallet) Withdrawl(money Bitcoin) {
+	w.balance -= money
+}
+
 func (w *Wallet) Balance() Bitcoin {
 	return w.balance
 }
