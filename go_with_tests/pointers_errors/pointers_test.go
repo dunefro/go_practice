@@ -11,6 +11,8 @@ func TestWallet(t *testing.T) {
 			t.Errorf("Expected: %s Recieved: %s", got, want)
 		}
 	}
+	// This helper function is to check if the errors are coming or not.
+	// Errors must come for this condition
 	assertError := func(t testing.TB, errGotString error, errWantString error) {
 		t.Helper()
 		if errGotString == nil {
