@@ -12,11 +12,10 @@ func TestDictionary(t *testing.T) {
 	})
 	t.Run("Unknown Word", func(t *testing.T) {
 		_, err := dictionary.Search("random")
-		want := "Could not find the word you are looking for"
 		if err == nil {
 			t.Fatal("Expected error here")
 		}
-		assertStrings(t, err.Error(), want)
+		assertError(t, err, errorNotFound)
 	})
 }
 
@@ -24,5 +23,12 @@ func assertStrings(t testing.TB, got string, want string) {
 	t.Helper()
 	if got != want {
 		t.Errorf("Expected: %q Received: %q", want, got)
+	}
+}
+
+func assertError(t testing.TB, got error, want error) {
+	t.Helper()
+	if got != want {
+		t.Errorf("got error %q want %q", got, want)
 	}
 }
