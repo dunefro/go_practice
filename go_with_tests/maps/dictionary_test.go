@@ -3,11 +3,12 @@ package maps
 import "testing"
 
 func TestDictionary(t *testing.T) {
-	dictionary := Dictionary{"test": "this is just a test"}
+	text := "this is just a test"
+	dictionary := Dictionary{"test": text}
 
 	t.Run("Known word", func(t *testing.T) {
 		got, _ := dictionary.Search("test")
-		want := "this is just a test"
+		want := text
 		assertStrings(t, got, want)
 	})
 	t.Run("Unknown Word", func(t *testing.T) {
@@ -21,11 +22,12 @@ func TestDictionary(t *testing.T) {
 
 func TestAdd(t *testing.T) {
 	dictionary := Dictionary{}
+	text := "this is just a test"
 	//Adding the key here
-	dictionary.Add("test", "this is just a test")
+	dictionary.Add("test", text)
 	// Searching for the added key
 	got, err := dictionary.Search("test")
-	want := "this is just a test"
+	want := text
 	if err != nil {
 		t.Fatal("Was not expecting an error here")
 	}
