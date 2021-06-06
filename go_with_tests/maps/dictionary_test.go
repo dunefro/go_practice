@@ -56,14 +56,24 @@ func TestAdd(t *testing.T) {
 
 func TestUpdate(t *testing.T) {
 	text := "this is just a test"
-	dictionary := Dictionary{"test": text}
-	newText := "something new"
-	dictionary.Update("test", newText)
-	got, errSearch := dictionary.Search("test")
-	if errSearch != nil {
-		t.Fatal("Expected the error not to come")
-	}
-	assertStrings(t, got, newText)
+	t.Run("Updating existing word", func(t *testing.T) {
+		dictionary := Dictionary{"test": text}
+		newText := "something new"
+		dictionary.Update("test", newText)
+		got, errSearch := dictionary.Search("test")
+		if errSearch != nil {
+			t.Fatal("Expected the error not to come")
+		}
+		assertStrings(t, got, newText)
+	})
+	t.Run("Updating non-existent word", func(t *testing.T) {
+		dictionary := Dictionary{}
+		errUpdate := dictionary.Update("test", text)
+		if errUpdate == nil {
+			t.Fatal("Expected an error here")
+		}
+	})
+
 }
 
 func assertStrings(t testing.TB, got string, want string) {
