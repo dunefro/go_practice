@@ -21,17 +21,37 @@ func TestDictionary(t *testing.T) {
 }
 
 func TestAdd(t *testing.T) {
-	dictionary := Dictionary{}
 	text := "this is just a test"
-	//Adding the key here
-	dictionary.Add("test", text)
-	// Searching for the added key
-	got, err := dictionary.Search("test")
-	want := text
-	if err != nil {
-		t.Fatal("Was not expecting an error here")
-	}
-	assertStrings(t, got, want)
+
+	t.Run("Adding non-existent key", func(t *testing.T) {
+		dictionary := Dictionary{}
+		//Adding the key here
+		errAdd := dictionary.Add("test", text)
+		// Searching for the added key
+		got, errSearch := dictionary.Search("test")
+		want := text
+		if errAdd != nil {
+			t.Fatal("Was not expectng any error here but recieved one")
+		}
+		if errSearch != nil {
+			t.Fatal("Was not expecting an error here")
+		}
+		assertStrings(t, got, want)
+	})
+	t.Run("Adding existing word", func(t *testing.T) {
+		dictionary := Dictionary{"test": text}
+		errAdd := dictionary.Add("test", "some text that should not get overridden")
+		got, errSearch := dictionary.Search("test")
+		if errAdd == nil {
+			t.Error("Was expecting an error herer")
+		}
+		if errSearch != nil {
+			t.Fatal("Was not expecting the error here")
+		}
+		want := text
+		assertStrings(t, got, want)
+	})
+
 }
 
 func assertStrings(t testing.TB, got string, want string) {
