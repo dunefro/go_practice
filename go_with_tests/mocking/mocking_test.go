@@ -7,7 +7,10 @@ import (
 
 func TestCountdown(t *testing.T) {
 	buffer := &bytes.Buffer{}
-	Countdown(buffer)
+	sleeper := Spysleeper{
+		Calls: 3,
+	}
+	Countdown(buffer, &sleeper)
 	got := buffer.String()
 	want := `3
 2
