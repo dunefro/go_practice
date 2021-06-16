@@ -9,6 +9,9 @@ func main() {
 		for i := 0; i < 5; i++ {
 			ch <- i
 		}
+		// Closing the channel
+		close(ch)
+
 	}()
 	// Receive
 	for j := range ch {
