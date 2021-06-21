@@ -27,4 +27,6 @@ func TestRacer(t *testing.T) {
 	if want != got {
 		t.Errorf("We expected %q to be fast but %q was faster", want, got)
 	}
+	slowServer.Close()
+	fastServer.Close()
 }
