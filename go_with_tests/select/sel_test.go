@@ -8,17 +8,10 @@ import (
 )
 
 func TestRacer(t *testing.T) {
-	// We create a slow server which will wait for 20 milliseconds
-	// The purpose of below function is to create a sample http server with http://12.0.0.1:<some high value port>
-	slowServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		time.Sleep(20 * time.Millisecond)
-		w.WriteHeader(http.StatusOK)
-	}))
 
-	// Fast server will not wait
-	fastServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-	}))
+	slowServer := returnfakeserver(20 * time.Millisecond)
+	fastServer := returnfakeserver(0 * time.Millisecond)
+
 	slowURL := slowServer.URL
 	fastURL := fastServer.URL
 
@@ -29,4 +22,11 @@ func TestRacer(t *testing.T) {
 	}
 	slowServer.Close()
 	fastServer.Close()
+}
+
+func returnfakeserver(delay time.Duration) *httptest.Server {
+	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		time.Sleep(delay)
+		w.WriteHeader(http.StatusOK)
+	}))
 }
