@@ -8,13 +8,8 @@ import (
 
 func Racer(url1 string, url2 string) (winner string) {
 
-	start1 := time.Now()
-	http.Get(url1)
-	time1 := time.Since(start1)
-
-	start2 := time.Now()
-	http.Get(url2)
-	time2 := time.Since(start2)
+	time1 := measureDuration(url1)
+	time2 := measureDuration(url2)
 
 	fmt.Printf("%q: %d\n%q: %d\n", url1, time1, url2, time2)
 
@@ -23,4 +18,12 @@ func Racer(url1 string, url2 string) (winner string) {
 	}
 
 	return url1
+}
+func measureDuration(url string) time.Duration {
+
+	start := time.Now()
+	http.Get(url)
+	duration := time.Since(start)
+
+	return duration
 }
