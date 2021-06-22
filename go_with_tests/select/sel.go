@@ -6,13 +6,13 @@ import (
 	"time"
 )
 
-func Racer(url1 string, url2 string) (string, error) {
+func Racer(url1 string, url2 string, timeout time.Duration) (string, error) {
 	select {
 	case <-ping(url1):
 		return url1, nil
 	case <-ping(url2):
 		return url2, nil
-	case <-time.After(10 * time.Millisecond):
+	case <-time.After(timeout):
 		return "", fmt.Errorf("timed out waiting for %s and %s", url1, url2)
 	}
 

@@ -9,6 +9,8 @@ import (
 
 func TestRacer(t *testing.T) {
 	t.Run("Fake server testing", func(t *testing.T) {
+
+		timeout := 50 * time.Millisecond
 		slowServer := returnfakeserver(20 * time.Millisecond)
 		fastServer := returnfakeserver(0 * time.Millisecond)
 
@@ -20,12 +22,15 @@ func TestRacer(t *testing.T) {
 		fastURL := fastServer.URL
 
 		want := fastURL
-		got, _ := Racer(slowURL, fastURL)
+		got, _ := Racer(slowURL, fastURL, timeout)
 		if want != got {
 			t.Errorf("We expected %q to be fast but %q was faster", want, got)
 		}
 	})
 	t.Run("Time more than 10 seconds", func(t *testing.T) {
+
+		timeout := 10 * time.Millisecond
+
 		slowServer := returnfakeserver(20 * time.Millisecond)
 		fastServer := returnfakeserver(30 * time.Millisecond)
 
@@ -37,7 +42,7 @@ func TestRacer(t *testing.T) {
 		fastURL := fastServer.URL
 
 		// want := fastURL
-		_, err := Racer(slowURL, fastURL)
+		_, err := Racer(slowURL, fastURL, timeout)
 		if err == nil {
 			t.Errorf("We expected an error here")
 		}
