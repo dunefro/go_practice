@@ -7,7 +7,7 @@ import (
 func walk(x interface{}, fn func(input string)) {
 	val := getValue(x)
 	switch val.Kind() {
-	case reflect.Slice:
+	case reflect.Slice, reflect.Array:
 		for i := 0; i < val.Len(); i++ {
 			walk(val.Index(i).Interface(), fn)
 		}
