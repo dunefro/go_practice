@@ -18,6 +18,10 @@ func walk(x interface{}, fn func(input string)) {
 			field := val.Field(i)
 			walk(field.Interface(), fn)
 		}
+	case reflect.Map:
+		for _, key := range val.MapKeys() {
+			walk(val.MapIndex(key).Interface(), fn)
+		}
 	}
 }
 func getValue(x interface{}) (val reflect.Value) {
