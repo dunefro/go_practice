@@ -1,4 +1,4 @@
-package main
+package v1
 
 type Counter struct {
 	count int
