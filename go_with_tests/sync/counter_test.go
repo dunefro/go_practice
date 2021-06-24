@@ -21,11 +21,14 @@ func TestCounter(t *testing.T) {
 
 		wantedCount := 1000
 		var wg sync.WaitGroup
+		var mu sync.Mutex
 		wg.Add(wantedCount)
 		counter := Counter{}
 		for i := 0; i < 1000; i++ {
 			go func() {
+				mu.Lock()
 				counter.Inc()
+				mu.Unlock()
 				wg.Done()
 			}()
 		}
