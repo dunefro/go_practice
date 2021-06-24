@@ -8,11 +8,17 @@ func TestCounter(t *testing.T) {
 		counter.Inc()
 		counter.Inc()
 		counter.Inc()
-		got := counter.Value()
-		want := 3
 
-		if got != want {
-			t.Errorf("Expected %d recieved %d", want, got)
-		}
+		want := 3
+		assertCounter(t, counter, want)
+
 	})
+}
+func assertCounter(t *testing.T, got Counter, want int) {
+
+	t.Helper()
+
+	if got.Value() != want {
+		t.Errorf("Expected %d recieved %d", want, got.Value())
+	}
 }
