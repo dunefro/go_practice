@@ -36,9 +36,7 @@ func TestServer(t *testing.T) {
 		response := httptest.NewRecorder()
 
 		svr.ServeHTTP(response, request)
-		if !store.cancelled {
-			t.Error("store was not told to cancel")
-		}
+		store.assertWasNotCancelled(t)
 
 	})
 	t.Run("No cancellation of request", func(t *testing.T) {
@@ -53,9 +51,21 @@ func TestServer(t *testing.T) {
 		if response.Body.String() != data {
 			t.Errorf("Expected %s , Recieved %s", data, response.Body.String())
 		}
-		if store.cancelled {
-			t.Errorf("Expected the store to not get cancelled")
-		}
+		store.assertWasCancelled(t)
 	})
 
+}
+
+func (store *SpyStore) assertWasCancelled(t *testing.T) {
+	t.Helper()
+	if store.cancelled {
+		t.Errorf("Expected the store to not get cancelled")
+	}
+}
+
+func (store *SpyStore) assertWasNotCancelled(t *testing.T) {
+	t.Helper()
+	if !store.cancelled {
+		t.Error("Expected the store to get cancelled")
+	}
 }
