@@ -23,6 +23,5 @@ func Server(store Store) http.HandlerFunc {
 		case <-ctx.Done():
 			store.Cancel()
 		}
-		fmt.Fprint(w, store.Fetch())
 	}
 }

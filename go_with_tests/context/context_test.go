@@ -41,5 +41,21 @@ func TestServer(t *testing.T) {
 		}
 
 	})
+	t.Run("No cancellation of request", func(t *testing.T) {
+		data := "Hello world"
+		store := &SpyStore{
+			response: data,
+		}
+		svr := Server(store)
+		request := httptest.NewRequest(http.MethodGet, "/", nil)
+		response := httptest.NewRecorder()
+		svr.ServeHTTP(response, request)
+		if response.Body.String() != data {
+			t.Errorf("Expected %s , Recieved %s", data, response.Body.String())
+		}
+		if store.cancelled {
+			t.Errorf("Expected the store to not get cancelled")
+		}
+	})
 
 }
