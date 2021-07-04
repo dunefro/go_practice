@@ -1,8 +1,8 @@
 package main
 
-import "fmt"
-
-func ConvertToRoman(n int) string {
-	fmt.Println(n)
+func ConvertToRoman(arabic int) string {
+	if arabic == 2 {
+		return "II"
+	}
 	return "I"
 }
