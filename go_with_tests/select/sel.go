@@ -13,7 +13,7 @@ func Racer(url1 string, url2 string, timeout time.Duration) (string, error) {
 	case <-ping(url2):
 		return url2, nil
 	case <-time.After(timeout):
-		return "", fmt.Errorf("timed out waiting for %s and %s", url1, url2)
+		return "", fmt.Errorf("Timed out waiting for %s and %s", url1, url2)
 	}
 
 }
