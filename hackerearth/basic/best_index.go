@@ -24,7 +24,7 @@ func main() {
 			}
 		}
 		if i == 0 {
-			sum = sumArr[i]
+			sum = sumArr[k]
 		} else {
 			sum = sumArr[k] - sumArr[i-1]
 		}
@@ -34,3 +34,6 @@ func main() {
 	}
 	fmt.Println(max)
 }
+
+// -1000000
+// -10000000
