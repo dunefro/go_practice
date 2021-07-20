@@ -4,6 +4,7 @@ import "fmt"
 
 func main() {
 	var size, max, k, sum, arrSum int
+	max = -1 << 63
 	fmt.Scanln(&size)
 	var arr = make([]int, size)
 	var sumArr = make([]int, size)
