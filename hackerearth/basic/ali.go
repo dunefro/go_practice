@@ -9,7 +9,6 @@ func main() {
 	var str string
 	var flag bool
 	var i1, i2 int
-	// status := "invalid"
 	fmt.Scanf("%s", &str)
 	for i := 0; i < len(str); i++ {
 		if i == 2 {
