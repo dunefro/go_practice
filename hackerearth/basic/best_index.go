@@ -3,15 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	var size, max int
+	var size, max, k, sum, arrSum int
 	fmt.Scanln(&size)
 	var arr = make([]int, size)
+	var sumArr = make([]int, size)
 	for i := 0; i < size; i++ {
 		fmt.Scanf("%d", &arr[i])
+		arrSum += arr[i]
+		sumArr[i] = arrSum
 	}
 	for i := 0; i < size; i++ {
 		t := i
-		k := i
 		for j := 2; ; j++ {
 			if t+j >= size {
 				k = t
@@ -20,16 +22,14 @@ func main() {
 				t += j
 			}
 		}
-		if sum := calculateSum(arr, i, k); max < sum {
+		if i == 0 {
+			sum = sumArr[i]
+		} else {
+			sum = sumArr[k] - sumArr[i-1]
+		}
+		if max < sum {
 			max = sum
 		}
 	}
 	fmt.Println(max)
-}
-func calculateSum(arr []int, start, end int) int {
-	var sum int
-	for i := start; i <= end; i++ {
-		sum += arr[i]
-	}
-	return sum
 }
