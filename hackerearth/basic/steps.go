@@ -59,15 +59,3 @@ func main() {
 	}
 
 }
-
-// func checkAll(a []int, size int) bool {
-// 	flag := true
-// 	for i := 0; i < size-1; i++ {
-// 		if a[i] != a[i+1] {
-// 			flag = false
-// 		}
-// 	}
-// 	return flag
-// }
-
-// func checkToContinue
