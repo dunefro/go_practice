@@ -10,7 +10,6 @@ func main() {
 	var a = make([]int, size)
 	var b = make([]int, size)
 	min := 5000
-	// old_true_min := 5000
 	new_true_min := 5000
 	for i := 0; i < size; i++ {
 		fmt.Scanf("%d", &a[i])
