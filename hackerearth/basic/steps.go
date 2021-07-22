@@ -4,19 +4,24 @@ import "fmt"
 
 func main() {
 	var size, steps int
-	fmt.Scanf("%d", &size)
 	var checkToContinue int
 	var checkAll int
 	var a = make([]int, size)
 	var b = make([]int, size)
+
+	// assigning maximum possible values in the array
 	min := 5000
 	new_true_min := 5000
+	// Taking input of size and array
+	fmt.Scanf("%d", &size)
+
 	for i := 0; i < size; i++ {
 		fmt.Scanf("%d", &a[i])
 		if min > a[i] {
 			min = a[i]
 		}
 	}
+	// Taking input for second array
 	for i := 0; i < size; i++ {
 		fmt.Scanf("%d", &b[i])
 	}
