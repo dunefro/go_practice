@@ -27,5 +27,5 @@ func (p person) fullName() string {
 // }
 
 func (p *person) changeFirstName(s string) {
-	p.firstName = s
+	(*p).firstName = s
 }
