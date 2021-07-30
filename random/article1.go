@@ -13,8 +13,8 @@ func main() {
 	fmt.Println("After changing the firstName")
 	// Person.changeFirstName("Mr. Vedant")
 	// fmt.Println(Person.fullName())
-	PointerPerson := &Person
-	PointerPerson.changeFirstName("Mr Vedant")
+	// PointerPerson := &Person
+	Person.changeFirstName("Mr Vedant")
 	fmt.Println(Person.fullName())
 }
 
