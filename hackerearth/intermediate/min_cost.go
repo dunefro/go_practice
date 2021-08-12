@@ -9,17 +9,17 @@ func main() {
 	var size, k int
 	fmt.Scanf("%d", &size)
 	fmt.Scanf("%d", &k)
-	var arr = make([]float64, size)
+	var arr = make([]int, size)
 	for i := 0; i < size; i++ {
-		fmt.Scanf("%f", &arr[i])
+		fmt.Scanf("%d", &arr[i])
 	}
-	cost := 0.0
+	cost := 0
 	for i := 0; i < size; i++ {
 		if arr[i] > 0 {
 			rem := arr[i]
 			for j := i + 1; j <= i+k; j++ {
 				if arr[j] < 0 && rem > 0 {
-					absValue := math.Abs(arr[j])
+					absValue := int(math.Abs(float64(arr[j])))
 					if rem < absValue {
 						absValue = rem
 					}
@@ -29,7 +29,7 @@ func main() {
 				}
 			}
 		}
-		cost = cost + math.Abs(arr[i])
+		cost = cost + int(math.Abs(float64(arr[i])))
 	}
-	fmt.Println(int(cost))
+	fmt.Println(cost)
 }
