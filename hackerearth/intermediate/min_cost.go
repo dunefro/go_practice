@@ -9,38 +9,27 @@ func main() {
 	var size, k int
 	fmt.Scanf("%d", &size)
 	fmt.Scanf("%d", &k)
-	var arr = make([]int, size)
-	var tarr = make([]int, size)
+	var arr = make([]float64, size)
 	for i := 0; i < size; i++ {
-		fmt.Scanf("%d", &arr[i])
+		fmt.Scanf("%f", &arr[i])
 	}
-	cost := 0
+	cost := 0.0
 	for i := 0; i < size; i++ {
 		if arr[i] > 0 {
 			rem := arr[i]
-			// fmt.Println("__________________", arr[i])
 			for j := i + 1; j <= i+k; j++ {
-				// fmt.Println(arr[j])
-				// fmt.Println(rem)
 				if arr[j] < 0 && rem > 0 {
-					// fmt.Println("Entered sinde")
-					absValue := int(math.Abs(float64(arr[j] + tarr[j])))
+					absValue := math.Abs(arr[j])
 					if rem < absValue {
 						absValue = rem
 					}
-					tarr[i] = tarr[i] - absValue
-					tarr[j] = tarr[j] + absValue
+					arr[i] = arr[i] - absValue
+					arr[j] = arr[j] + absValue
 					rem = rem - absValue
 				}
 			}
 		}
-		cost = cost + int(math.Abs(float64(arr[i]+tarr[i])))
+		cost = cost + math.Abs(arr[i])
 	}
-	// fmt.Println(arr)
-	// fmt.Println(tarr)
-	// cost := 0
-	// for i := 0; i < size; i++ {
-	// 	cost = cost + int(math.Abs(float64(arr[i]+tarr[i])))
-	// }
-	fmt.Println(cost)
+	fmt.Println(int(cost))
 }
