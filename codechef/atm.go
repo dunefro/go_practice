@@ -6,14 +6,14 @@ import (
 )
 
 func main() {
-	var withdrawl float64
+	var w float64
 	var total float64
 	var rem float64
-	fmt.Scanf("%f", &withdrawl)
+	fmt.Scanf("%f", &w)
 	fmt.Scanf("%f", &total)
-	if withdrawl <= total-0.50 {
-		if math.Mod(withdrawl, 5) == 0 {
-			rem = total - (withdrawl + 0.50)
+	if w <= total-0.50 {
+		if math.Mod(w, 5) == 0 {
+			rem = total - (w + 0.50)
 		} else {
 			rem = total
 		}
