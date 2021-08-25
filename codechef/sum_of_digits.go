@@ -15,7 +15,6 @@ func main() {
 	for i := int64(0); i < T; i++ {
 		scanner.Scan()
 		arr := strings.Split(scanner.Text(), "")
-		// number, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 		var total int64
 		for _, number := range arr {
 			numberInInt, _ := strconv.ParseInt(number, 10, 64)
