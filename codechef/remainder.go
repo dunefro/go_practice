@@ -18,7 +18,6 @@ func main() {
 		if len(arr) == 2 {
 			num1, _ := strconv.ParseInt(arr[0], 10, 64)
 			num2, _ := strconv.ParseInt(arr[1], 10, 64)
-			// fmt.Println(math.Remainder(num1, num2))
 			fmt.Println(num1 % num2)
 		}
 	}
