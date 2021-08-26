@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func main() {
@@ -11,5 +12,10 @@ func main() {
 	log.Fatal(http.ListenAndServe(":5000", handler))
 }
 func PlayerServer(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "20")
+	player := strings.TrimPrefix(r.URL.Path, "/players/")
+	if player == "Pepper" {
+		fmt.Fprintf(w, "20")
+	} else if player == "floyd" {
+		fmt.Fprintf(w, "10")
+	}
 }
