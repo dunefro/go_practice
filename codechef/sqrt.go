@@ -15,6 +15,6 @@ func main() {
 	for i := int64(0); i < T; i++ {
 		scanner.Scan()
 		n, _ := strconv.ParseInt(scanner.Text(), 10, 64)
-		fmt.Println(int(math.Sqrt(float64(n)) + 0.5))
+		fmt.Println(int(math.Sqrt(float64(n)) + 0.5)) // We can use math.Round after go 1.10+
 	}
 }
