@@ -8,26 +8,26 @@ import (
 )
 
 func TestGETPlayers(t *testing.T) {
+	store := StubPlayerStore{
+		map[string]int{
+			"Pepper": 20,
+			"floyd":  10,
+		},
+	}
+	server := &PlayerServer{&store}
 	t.Run("Return Pepper's score", func(t *testing.T) {
 		request := newgetscorerequest("Pepper")
 		response := httptest.NewRecorder()
 
-		PlayerServer(response, request)
-		got := response.Body.String()
-		want := "20"
-		assertResponseBody(t, got, want)
+		server.ServeHTTP(response, request)
+		assertResponseBody(t, response.Body.String(), "20")
 	})
 	t.Run("Return Floyd's score", func(t *testing.T) {
 		request := newgetscorerequest("floyd")
 		response := httptest.NewRecorder()
 
-		PlayerServer(response, request)
-		got := response.Body.String()
-		want := "10"
-		assertResponseBody(t, got, want)
-		// if got != want {
-		// 	t.Errorf("got %q want %q", got, want)
-		// }
+		server.ServeHTTP(response, request)
+		assertResponseBody(t, response.Body.String(), "10")
 	})
 }
 
