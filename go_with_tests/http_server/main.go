@@ -36,17 +36,21 @@ func main() {
 	log.Fatal(http.ListenAndServe(":5000", server))
 }
 func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path == "/league" {
+	router := http.NewServeMux()
+	router.Handle("/league", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
-		return
-	}
-	player := strings.TrimPrefix(r.URL.Path, "/players/")
-	switch r.Method {
-	case http.MethodPost:
-		p.processWin(w, player)
-	case http.MethodGet:
-		p.showScore(w, player)
-	}
+	}))
+	router.Handle("/players/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		player := strings.TrimPrefix(r.URL.Path, "/players/")
+		switch r.Method {
+		case http.MethodPost:
+			p.processWin(w, player)
+		case http.MethodGet:
+			p.showScore(w, player)
+		}
+	}))
+	router.ServeHTTP(w, r)
+
 }
 
 func (p *PlayerServer) processWin(w http.ResponseWriter, player string) {
