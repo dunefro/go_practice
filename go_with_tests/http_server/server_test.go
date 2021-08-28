@@ -13,6 +13,7 @@ func TestGETPlayers(t *testing.T) {
 			"Pepper": 20,
 			"floyd":  10,
 		},
+		nil,
 	}
 	server := &PlayerServer{&store}
 	t.Run("Return Pepper's score", func(t *testing.T) {
@@ -43,14 +44,22 @@ func TestGETPlayers(t *testing.T) {
 func TestStoreWins(t *testing.T) {
 	store := StubPlayerStore{
 		map[string]int{},
+		nil,
 	}
 	server := &PlayerServer{&store}
 	t.Run("POST request", func(t *testing.T) {
-		request, _ := http.NewRequest(http.MethodPost, "/players/Pepper", nil)
+		request := newPostWinRequest("Peppe")
 		response := httptest.NewRecorder()
 		server.ServeHTTP(response, request)
 		assertStatus(t, response.Code, http.StatusAccepted)
+		if len(store.winCalls) != 1 {
+			t.Errorf("got %d calls to RecordWin want %d", len(store.winCalls), 1)
+		}
 	})
+}
+func newPostWinRequest(name string) *http.Request {
+	request, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("/players/%s", name), nil)
+	return request
 }
 
 func newgetscorerequest(player string) *http.Request {
