@@ -18,13 +18,17 @@ type StubPlayerStore struct {
 	scores   map[string]int
 	winCalls []string
 }
-type InMemoryPlayerStore struct{}
+type InMemoryPlayerStore struct {
+	scores map[string]int
+}
 
-func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
-	return 123
+func (i *InMemoryPlayerStore) GetPlayerScore(player string) int {
+	score := i.scores[player]
+	return score
 }
 
 func (i *InMemoryPlayerStore) recordWin(name string) {
+	i.scores[name]++
 }
 
 func main() {
