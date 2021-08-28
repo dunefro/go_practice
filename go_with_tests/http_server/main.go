@@ -36,6 +36,10 @@ func main() {
 	log.Fatal(http.ListenAndServe(":5000", server))
 }
 func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/league" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
 	player := strings.TrimPrefix(r.URL.Path, "/players/")
 	switch r.Method {
 	case http.MethodPost:
