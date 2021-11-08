@@ -19,3 +19,8 @@ func ExampleCount() {
 	// Output:
 	// 3
 }
+func BenchmarkCount(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Count(quote.SunAlso)
+	}
+}
