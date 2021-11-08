@@ -20,3 +20,15 @@ func TestYearsTwo(t *testing.T) {
 		t.Error("Expected", expected, "Got", got)
 	}
 }
+
+func BenchmarkYears(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Years(5)
+	}
+}
+
+func BenchmarkYearsTwo(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		YearsTwo(5)
+	}
+}
