@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"os"
 )
@@ -9,6 +10,9 @@ import (
 // Program prints only unique lines separated by newline
 func main() {
 	lines := make(map[string]int)
+	if len(os.Args) <= 1 {
+		panic(errors.New("Please specify a file for input"))
+	}
 	fileName := os.Args[1]
 	file, err := os.Open(fileName)
 	if err != nil {
