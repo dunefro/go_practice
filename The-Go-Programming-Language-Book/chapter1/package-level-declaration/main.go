@@ -1,7 +1,11 @@
 package main
 
-const c = 5
+import (
+	"exporter/cal"
+	"fmt"
+)
 
 func main() {
-	foo()
+	fmt.Println(cal.Price)
+	fmt.Println(cal.s)
 }
