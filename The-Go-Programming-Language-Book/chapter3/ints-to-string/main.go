@@ -14,7 +14,8 @@ func convert(x []int) string {
 	buf.WriteByte('[')
 	for i, v := range x {
 		if i > 0 {
-			buf.WriteString(", ")
+			buf.WriteByte(',')
+			buf.WriteByte(' ')
 		}
 		fmt.Fprintf(&buf, "%d", v)
 	}
