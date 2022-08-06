@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(convert([]int{1, 2, 3}))
+	fmt.Println(convert([]int{1, -2, 3, -4}))
 }
 
 func convert(x []int) string {
@@ -15,7 +15,6 @@ func convert(x []int) string {
 	for i, v := range x {
 		if i > 0 {
 			buf.WriteByte(',')
-			buf.WriteByte(' ')
 		}
 		fmt.Fprintf(&buf, "%d", v)
 	}
