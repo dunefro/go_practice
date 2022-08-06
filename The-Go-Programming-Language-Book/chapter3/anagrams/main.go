@@ -14,7 +14,6 @@ func main() {
 	fmt.Print("Enter your second word: ")
 	scan1.Scan()
 	text2 := scan1.Text()
-	fmt.Println(text1 == text2)
 	m1 := getMap(text1)
 	m2 := getMap(text2)
 	fmt.Println(m1)
