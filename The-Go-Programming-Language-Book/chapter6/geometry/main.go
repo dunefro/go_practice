@@ -15,4 +15,12 @@ func main() {
 		Y: 4.0,
 	}
 	fmt.Println(P.Distance(Q))
+	// perimeter of a right angle triangle
+	path := geometry.Path{
+		geometry.Point{1, 1},
+		geometry.Point{5, 1},
+		geometry.Point{5, 4},
+	}
+	fmt.Println(path.Distance())
+
 }
