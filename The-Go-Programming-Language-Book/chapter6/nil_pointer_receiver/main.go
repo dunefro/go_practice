@@ -24,10 +24,15 @@ func main() {
 	fmt.Println(p.message())
 	p.addHobbie("movies")
 	fmt.Println(p.message())
+	p = nil
+	fmt.Println(p.message())
 
 }
 
 func (p *Person) message() string {
+	if p == nil {
+		return "Are you a person ?"
+	}
 	return fmt.Sprintf("My name is %s. I am %d years old. My hobbies are %s.", p.name, p.age, strings.Join(p.hobbies, ","))
 }
 
