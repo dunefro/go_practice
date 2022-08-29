@@ -5,11 +5,11 @@ import "fmt"
 func main() {
 	var any interface{}
 
-	any = 2 //int
+	any = 2 // int
 	fmt.Println(any)
-	any = true
+	any = true // bool
 	fmt.Println(any)
-	any = []int{1, 2, 3}
+	any = []int{1, 2, 3} // []int
 	fmt.Println(any)
 
 }
