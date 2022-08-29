@@ -9,8 +9,8 @@ import (
 
 func main() {
 	var w io.Writer
-	w = os.Stdout
-	fmt.Println(w) // runs fine
-	w = new(bytes.Buffer)
-	fmt.Println(w) // rune fine
+	w = os.Stdout // OK
+	fmt.Println(w)
+	w = new(bytes.Buffer) // OK
+	fmt.Println(w)
 }
