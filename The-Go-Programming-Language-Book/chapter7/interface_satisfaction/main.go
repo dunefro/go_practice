@@ -10,7 +10,7 @@ import (
 func main() {
 	var w io.Writer
 	w = os.Stdout
-	fmt.Println(w)
+	fmt.Println(w) // runs fine
 	w = new(bytes.Buffer)
-	fmt.Println(w)
+	fmt.Println(w) // rune fine
 }
