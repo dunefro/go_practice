@@ -19,8 +19,24 @@ func main() {
 	log.Fatal(http.ListenAndServe("localhost:8080", db))
 }
 
-func (db database) ServeHTTP(w http.ResponseWriter, h *http.Request) {
-	for item, price := range db {
-		fmt.Fprintf(w, "%s: %s\n", item, price)
+func (db database) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	switch r.URL.Path {
+	case "/list":
+		for item, price := range db {
+			fmt.Fprintf(w, "%s: %s\n", item, price)
+		}
+	case "/price":
+		item := r.URL.Query().Get("Item")
+		fmt.Println(item)
+		price, ok := db[item]
+		if !ok {
+			w.WriteHeader(http.StatusNotFound)
+			fmt.Fprintf(w, "%s Not found\n", item)
+			return
+		}
+		fmt.Fprintf(w, "%s\n", price)
+	default:
+		fmt.Fprintf(w, "Index page\n")
+
 	}
 }
