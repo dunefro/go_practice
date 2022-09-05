@@ -27,7 +27,6 @@ func (db database) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	case "/price":
 		item := r.URL.Query().Get("Item")
-		fmt.Println(item)
 		price, ok := db[item]
 		if !ok {
 			w.WriteHeader(http.StatusNotFound)
